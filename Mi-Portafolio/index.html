@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./css/style.css" />
+
     <title>Protafolio</title>
   </head>
   <body>
@@ -17,31 +20,29 @@
     <!-- Aqui va la barra de navegacion -->
 
     <nav>
-      <ul>
-        <li><a href="#Home"> Inicio </a></li>
-        <li><a href="#Me"> Sobre mí </a></li>
-        <li><a href="#Skills"> Habilidades </a></li>
-        <li><a href="#Proyectos"> Proyectos </a></li>
-        <li><a href="#contacto"> Contacto </a></li>
-      </ul>
+      <a href="#Home"> Inicio </a>
+      <a href="#Me"> Sobre mí </a>
+      <a href="#Skills"> Habilidades </a>
+      <a href="#Proyectos"> Proyectos </a>
+      <a href="#contacto"> Contacto </a>
     </nav>
 
     <!-- Aqui comienza el contenido -->
 
     <main>
       <!--  -->
-      <section id="Home">
-        <div class="">
+      <section class="section-home" id="Home">
+        <div class="section-content">
           <h2>Wooolaa a todos, soy David Blas</h2>
           <p>Soy estudiante de TIID y estudio en la PoliGood</p>
-          <a href="">Ver mis proyectos</a>
+          <a href="#Proyectos" class="btn-p">Ver mis proyectos</a>
         </div>
       </section>
 
       <!-- Sección sobre mi -->
       <section id="Me">
         <h2>Sobre mi</h2>
-        <div class="imagen">
+        <div class="content-me">
           <img src="" alt="" />
           <div>
             <p>Algo que acompaña a lo de arriba</p>
@@ -52,7 +53,7 @@
 
       <!-- Sección de habilidades -->
 
-      <section id="Skills">
+      <section class="section-" id="Skills">
         <h2>Mis Habilidades</h2>
 
         <p>
@@ -61,7 +62,7 @@
           <br />
         </p>
 
-        <ul>
+        <ul class="list-skills">
           <li>C++</li>
           <li>Java</li>
           <li>Scratch</li>
@@ -78,14 +79,20 @@
 
       <sec id="Proyectos">
         <h2>Mis Proyectos</h2>
-        <div>
-          <article>
+        <div class="container-proy">
+          <article class="card">
+            <h3>Sistema de algo</h3>
+            <p>Descripcion del proyecto</p>
+            <a href=""> Ver Proyectos </a>
+          </article>
+          <article class="card">
             <h3>Sistema de algo</h3>
             <p>Descripcion del proyecto</p>
             <a href=""> Ver Proyectos </a>
           </article>
         </div>
       </sec>
+
 
       <!-- Seccion de contacto -->
 
@@ -97,7 +104,7 @@
             <input type="text" placeholder="David ..." />
           </div>
           <div class="Email">
-            <label for=""> Correo  </label>
+            <label for=""> Correo </label>
             <input type="text" placeholder="juachito@..." />
           </div>
           <div class="">
@@ -106,11 +113,17 @@
           </div>
         </form>
       </sec>
-
-      
     </main>
 
-    <!--  -->
+    <!-- Footer -->
+
+    <footer>
+
+      <p>2026 mi proyecto de portafolio web</p>
+      <p>Practica de prog web, todos los derechos reservados</p>
+
+    </footer>
+
     <!--  -->
   </body>
 </html>

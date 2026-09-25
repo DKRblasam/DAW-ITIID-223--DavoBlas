@@ -1,0 +1,287 @@
+/* Formato de HTML */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Formato cuerpo en general */
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #edede9;
+  color: black;
+}
+
+/* Estilos Header */
+
+header {
+  background-color: #a98360;
+  color: ghostwhite;
+
+  text-align: center;
+  padding: 50px 20px;
+}
+
+header h1 {
+  font-size: 62px;
+  margin: 0;
+}
+
+header p {
+  font-size: 20px;
+  font-style: italic;
+
+  margin-top: 10px;
+}
+
+/* Etilos Navegacion */
+
+nav {
+  border-bottom: 2px solid #d6ccc2;
+  background-color: #e3d5ca;
+
+  display: flex;
+
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+nav a {
+  color: #124e78;
+  text-decoration: none;
+  font-weight: 650;
+}
+
+nav a:hover {
+  text-decoration: overline underline;
+}
+
+/* Contenedor Principal */
+
+main {
+  background-color: #f5ebe0;
+
+  max-width: 1100px;
+  margin: 0 auto;
+
+  box-shadow: 3px 4px 2px #edede9;
+}
+
+/* Secciones en general */
+
+section {
+  padding: 60px 40px;
+
+  border-bottom: 2px solid #e3d5ca;
+}
+
+section h2 {
+  color: #766153;
+
+  margin-top: 0;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 30px;
+}
+
+/* ================== Secciones individuales ================== */
+/* Seccion de Inicio */
+
+.section-home {
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Seccion Inicio - Contenido */
+
+.section-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-content h2 {
+
+  font-size: 42px;
+  margin-bottom: 20px;
+
+}
+
+.section-content p {
+
+  font-size: 20px;
+  margin-bottom: 30px;
+
+
+}
+
+/* Botones */
+
+.btn-p,button {
+
+  display: inline-block;
+  padding: 15px 25px;
+
+  border: none;
+  border-radius: 5px;
+
+  background-color: #a98360;
+  color: black;
+
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+
+  
+}
+
+.btn-p:hover,button:hover {
+  background-color: #766153;
+  color: ghostwhite;
+
+
+}
+
+/* Seccion Sobre Mi */
+.content-me {
+
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 40px;
+
+  max-width: 800px;
+  margin: 0 auto;
+
+}
+
+.content-me img {
+
+  width: 200px;
+  height: 200px;
+
+  object-fit: cover;
+  
+  background-color: #124e78;
+
+  border-radius: 50%;
+  
+  border: 4px solid #7ac7fe;
+
+}
+
+.content-me p {
+
+  font-size: 18px;
+
+}
+
+
+/* Seccion de Skills*/
+
+.section-skills {
+
+}
+
+.list-skills {
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  padding: 0;
+
+  list-style: none;
+
+}
+
+.list-skills li {
+
+  padding: 12px 20px;
+  background-color: #76615384;
+
+  border: 3px dotted #766153;
+  border-radius: 10px;
+
+  color: #51453d;
+  font-weight: 600;
+
+}
+
+
+/* Seccion de Proyectos */
+
+.container-proy {
+
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+}
+
+.card {
+
+  flex: 1;
+  min-width: 250px;
+
+  padding: 25px;
+
+  border: 3px solid #723d46;
+  border-radius: 8px;
+
+  background-color: #f2e9e4;
+
+}
+
+.card h3 {
+
+  margin-top: 0;
+
+  color: #723d46;
+  font-size: 25px;
+  font-weight: 500;
+
+}
+
+.card a {
+
+  display: inline-block;
+  padding: 15px 25px;
+
+  border: none;
+  border-radius: 5px;
+
+  background-color: #a96f60;
+  
+  color: #f5ebe0;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+
+  
+}
+
+.card a:hover {
+  background-color: #766153;
+  color: ghostwhite;
+
+}
+
+
+/* Seccione */
+/* Seccione */
+
+/* .section-
+.section-
+.section- */
