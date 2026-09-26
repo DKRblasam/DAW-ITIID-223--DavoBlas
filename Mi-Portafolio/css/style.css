@@ -110,24 +110,19 @@ section h2 {
 }
 
 .section-content h2 {
-
   font-size: 42px;
   margin-bottom: 20px;
-
 }
 
 .section-content p {
-
   font-size: 20px;
   margin-bottom: 30px;
-
-
 }
 
 /* Botones */
 
-.btn-p,button {
-
+.btn-p,
+button {
   display: inline-block;
   padding: 15px 25px;
 
@@ -140,20 +135,16 @@ section h2 {
   text-decoration: none;
   font-size: 16px;
   cursor: pointer;
-
-  
 }
 
-.btn-p:hover,button:hover {
+.btn-p:hover,
+button:hover {
   background-color: #766153;
   color: ghostwhite;
-
-
 }
 
 /* Seccion Sobre Mi */
 .content-me {
-
   display: flex;
   align-items: center;
   /* justify-content: center; */
@@ -161,39 +152,44 @@ section h2 {
 
   max-width: 800px;
   margin: 0 auto;
-
 }
 
 .content-me img {
-
   width: 200px;
   height: 200px;
 
   object-fit: cover;
-  
-  background-color: #124e78;
 
   border-radius: 50%;
-  
-  border: 4px solid #7ac7fe;
 
+  border: 4px solid #9d8189;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: #8a5a34;
+  color: #fff8ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Fraunces", serif;
+  font-size: 44px;
+  font-weight: 700;
 }
 
 .content-me p {
-
   font-size: 18px;
-
 }
-
 
 /* Seccion de Skills*/
 
 .section-skills {
-
 }
 
 .list-skills {
-
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -202,11 +198,9 @@ section h2 {
   padding: 0;
 
   list-style: none;
-
 }
 
 .list-skills li {
-
   padding: 12px 20px;
   background-color: #76615384;
 
@@ -215,22 +209,17 @@ section h2 {
 
   color: #51453d;
   font-weight: 600;
-
 }
-
 
 /* Seccion de Proyectos */
 
-.container-proy {
-
+.container-projects {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-
 }
 
-.card {
-
+.project {
   flex: 1;
   min-width: 250px;
 
@@ -240,21 +229,17 @@ section h2 {
   border-radius: 8px;
 
   background-color: #f2e9e4;
-
 }
 
-.card h3 {
-
+.project h3 {
   margin-top: 0;
 
   color: #723d46;
   font-size: 25px;
   font-weight: 500;
-
 }
 
-.card a {
-
+.project a {
   display: inline-block;
   padding: 15px 25px;
 
@@ -262,26 +247,268 @@ section h2 {
   border-radius: 5px;
 
   background-color: #a96f60;
-  
+
   color: #f5ebe0;
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
-
-  
 }
 
-.card a:hover {
+.project a:hover {
   background-color: #766153;
   color: ghostwhite;
-
 }
 
+/* Seccion del Formulario */
+.section-about {
+}
 
-/* Seccione */
-/* Seccione */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
 
-/* .section-
-.section-
-.section- */
+.el {
+  margin-bottom: 20px;
+}
+
+.el label {
+  display: block;
+  margin-bottom: 15px;
+
+  font-weight: 500;
+}
+
+.el input,
+.el textarea {
+  background-color: #f0ebd8;
+  width: 100%;
+  padding: 12px;
+
+  border: 2px double #9d8189;
+  border-radius: 10px;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.el textarea {
+  resize: vertical;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+  background-color: #5b483dfb;
+  color: #f1e4d3;
+
+  padding: 50px 20px 25px;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+
+  gap: 30px;
+
+  margin-bottom: 40px;
+}
+
+.footer-column h4 {
+  margin-top: 0;
+
+  color: #f1e4d3;
+  font-size: 17px;
+}
+
+.footer-column ul {
+  list-style: none;
+
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  margin-bottom: 10px;
+}
+
+.footer-column a {
+  color: #b9a68f;
+
+  text-decoration: none;
+}
+
+.footer-column a:hover {
+  color: #f1e4d3;
+}
+
+/* =========================
+   MARCA
+   ========================= */
+
+.brand-header {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  margin-bottom: 14px;
+}
+
+.brand-box {
+  width: 52px;
+  height: 52px;
+
+  border-radius: 8px;
+
+  background-color: #c98a3e;
+  color: #231710;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+}
+
+.brand-title h3 {
+  margin: 0;
+
+  color: #f1e4d3;
+  font-size: 19px;
+}
+
+.brand-title p {
+  margin: 2px 0 0;
+
+  color: #c98a3e;
+  font-size: 12px;
+}
+
+.brand-description {
+  color: #b9a68f;
+
+  font-size: 14px;
+
+  margin: 0;
+}
+
+/* =========================
+   REDES SOCIALES
+   ========================= */
+
+.social-links {
+  display: flex;
+  gap: 12px;
+}
+
+.social-link {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 8px;
+
+  background-color: #3a2b1e;
+  color: #b9a68f;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+}
+
+.social-link.facebook:hover {
+  background-color: #2563eb;
+  color: white;
+}
+
+.social-link.instagram:hover {
+  background-color: #db2777;
+  color: white;
+}
+
+.social-link.twitter:hover {
+  background-color: #3b82f6;
+  color: white;
+}
+
+/* =========================
+   PARTE FINAL DEL FOOTER
+   ========================= */
+
+.footer-bottom {
+  border-top: 1px solid #3a2b1e;
+
+  padding-top: 20px;
+
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+
+  color: #b9a68f;
+
+  font-size: 14px;
+}
+
+/* =========================
+   DISEÑO RESPONSIVE
+   ========================= */
+
+@media (max-width: 700px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  header h1 {
+    font-size: 32px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+  }
+
+  section {
+    padding: 40px 20px;
+  }
+
+  .content-me {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .container-projects {
+    flex-direction: column;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+
+    text-align: center;
+  }
+
+  .brand-header {
+    justify-content: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+}

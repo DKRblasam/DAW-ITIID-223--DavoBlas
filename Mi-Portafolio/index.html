@@ -1,129 +1,149 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>David Blas · Portafolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <link rel="stylesheet" href="./css/style.css" />
+<link rel="stylesheet" href="./css/style.css">
 
-    <title>Protafolio</title>
-  </head>
-  <body>
-    <!-- Aqui esta el ecabezado -->
+</head>
+<body>
 
-    <header>
-      <h1>Mi portafolio</h1>
+<header>
+  <h1>David Blas • Mi Portafolio</h1>
+  <p>Estudiante de Tecnologías de la Información · Universidad Politécnica</p>
+</header>
 
-      <p>Bienvenido a mi sitio web personal</p>
-    </header>
+<nav>
+  <a href="#Home">Inicio</a>
+  <a href="#Me">Sobre mí</a>
+  <a href="#Skills">Habilidades</a>
+  <a href="#Proyectos">Proyectos</a>
+  <a href="#Contacto">Contacto</a>
+</nav>
 
-    <!-- Aqui va la barra de navegacion -->
+<main>
+  <section class="section-home" id="Home">
+    <div class="section-content">
+      <h2>Hola, soy David</h2>
+      <p>Estudio Desarrollo de Software y disfruto construir cosas para la web, desde interfaces cuidadas hasta la lógica que las conecta con una base de datos.</p>
+      <a href="#Proyectos" class="btn-p">Ver mis proyectos</a>
+    </div>
+  </section>
 
-    <nav>
-      <a href="#Home"> Inicio </a>
-      <a href="#Me"> Sobre mí </a>
-      <a href="#Skills"> Habilidades </a>
-      <a href="#Proyectos"> Proyectos </a>
-      <a href="#contacto"> Contacto </a>
-    </nav>
+  <section id="Me">
+    <h2>Sobre mí</h2>
+    <div class="content-me">
+      <div class="avatar" role="img" aria-label="Iniciales DB">
+        <img src="" alt="" hidden >
+        DB
+      </div>
+      <div>
+        <p>Curso la materia de Desarrollo Web, donde estoy afinando cómo estructurar una página con HTML y darle personalidad con CSS.</p>
+        <p>Me interesa la parte donde el diseño y la lógica se encuentran: que una interfaz se vea bien y también funcione bien.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Aqui comienza el contenido -->
+  <section id="Skills">
+    <h2>Mis habilidades</h2>
+    <ul class="list-skills">
+      <li><i class="fa-solid fa-code"></i> C++</li>
+      <li><i class="fa-brands fa-java"></i> Java</li>
+      <li><i class="fa-solid fa-shapes"></i> Scratch</li>
+      <li><i class="fa-solid fa-network-wired"></i> Cisco Packet Tracer</li>
+      <li><i class="fa-brands fa-html5"></i> HTML</li>
+      <li><i class="fa-brands fa-css3-alt"></i> CSS</li>
+      <li><i class="fa-brands fa-js"></i> JavaScript</li>
+      <li><i class="fa-brands fa-php"></i> PHP</li>
+      <li><i class="fa-solid fa-database"></i> MySQL</li>
+    </ul>
+  </section>
 
-    <main>
-      <!--  -->
-      <section class="section-home" id="Home">
-        <div class="section-content">
-          <h2>Wooolaa a todos, soy David Blas</h2>
-          <p>Soy estudiante de TIID y estudio en la PoliGood</p>
-          <a href="#Proyectos" class="btn-p">Ver mis proyectos</a>
-        </div>
-      </section>
+  <section id="Proyectos">
+    <h2>Mis proyectos</h2>
+    <div class="container-projects">
+      <article class="project">
+        <h3>Gestor de tareas escolares</h3>
+        <p>Aplicación web para organizar tareas y fechas de entrega por materia, con inicio de sesión y una base de datos en MySQL.</p>
+        <a href="#">Ver proyecto</a>
+      </article>
+      <article class="project">
+        <h3>Catálogo de artesanías queretanas</h3>
+        <p>Sitio de catálogo con filtros por categoría y precio, pensado como práctica de HTML, CSS y PHP trabajando juntos.</p>
+        <a href="#">Ver proyecto</a>
+      </article>
+    </div>
+  </section>
 
-      <!-- Sección sobre mi -->
-      <section id="Me">
-        <h2>Sobre mi</h2>
-        <div class="content-me">
-          <img src="" alt="" />
-          <div>
-            <p>Algo que acompaña a lo de arriba</p>
-            <p>En esta practica estoy aprendiendo HTML & CSS</p>
+  <section id="Contacto">
+    <h2>Contáctame</h2>
+    <form action="#" onsubmit="return false;">
+      <div class="el">
+        <label for="Name">Nombre</label>
+        <input type="text" id="Name" name="Name" placeholder="David ...">
+      </div>
+      <div class="el">
+        <label for="Email">Correo</label>
+        <input type="email" id="Email" name="Email" placeholder="juanito@correo.com">
+      </div>
+      <div class="el">
+        <label for="Msg">Mensaje</label>
+        <textarea id="Msg" name="Msg" rows="5" placeholder="Escribe tu mensaje aquí..."></textarea>
+      </div>
+      <button type="submit">Enviar mensaje</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-column">
+        <div class="brand-header">
+          <div class="brand-box">DB</div>
+          <div class="brand-title">
+            <h3>David Blas</h3>
+            <p>Universidad Politécnica</p>
           </div>
         </div>
-      </section>
-
-      <!-- Sección de habilidades -->
-
-      <section class="section-" id="Skills">
-        <h2>Mis Habilidades</h2>
-
-        <p>
-          <br />
-          Mis habilidades contemplan:
-          <br />
-        </p>
-
-        <ul class="list-skills">
-          <li>C++</li>
-          <li>Java</li>
-          <li>Scratch</li>
-          <li>Cisco Packet Tracert</li>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-          <li>PHP</li>
-          <li>MySQL</li>
+        <p class="brand-description">Portafolio hecho como práctica de HTML y CSS para la materia de Desarrollo Web.</p>
+      </div>
+      <div class="footer-column">
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a href="#Home">Inicio</a></li>
+          <li><a href="#Me">Sobre mí</a></li>
+          <li><a href="#Skills">Habilidades</a></li>
+          <li><a href="#Proyectos">Proyectos</a></li>
         </ul>
-      </section>
-
-      <!-- Seccion de proyectos -->
-
-      <sec id="Proyectos">
-        <h2>Mis Proyectos</h2>
-        <div class="container-proy">
-          <article class="card">
-            <h3>Sistema de algo</h3>
-            <p>Descripcion del proyecto</p>
-            <a href=""> Ver Proyectos </a>
-          </article>
-          <article class="card">
-            <h3>Sistema de algo</h3>
-            <p>Descripcion del proyecto</p>
-            <a href=""> Ver Proyectos </a>
-          </article>
+      </div>
+      <div class="footer-column">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:125054204@upq.edu.mx">125054204@upq.edu.mx</a></li>
+          <li>Querétaro, México</li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Sígueme</h4>
+        <div class="social-links">
+          <a href="#" class="social-link facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
-      </sec>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 David Blas. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
 
-
-      <!-- Seccion de contacto -->
-
-      <sec id="About">
-        <h2>Contactame</h2>
-        <form action="">
-          <div class="">
-            <label for="Name"> Nombre </label>
-            <input type="text" placeholder="David ..." />
-          </div>
-          <div class="Email">
-            <label for=""> Correo </label>
-            <input type="text" placeholder="juachito@..." />
-          </div>
-          <div class="">
-            <label for="Msg"> Mensaje </label>
-            <textarea name="Msg" id="Msg" rows="5"></textarea>
-          </div>
-        </form>
-      </sec>
-    </main>
-
-    <!-- Footer -->
-
-    <footer>
-
-      <p>2026 mi proyecto de portafolio web</p>
-      <p>Practica de prog web, todos los derechos reservados</p>
-
-    </footer>
-
-    <!--  -->
-  </body>
+</body>
 </html>
