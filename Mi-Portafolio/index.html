@@ -18,14 +18,14 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/global-style.css" />
   </head>
   <body>
     <header>
       <h1>David Blas • Mi Portafolio</h1>
 
       <div class="msg">
-        <p id="m-msg"></p>
+        <p id="m-msg"></p>  
         <button onclick="changeMesagge()">Cambiar mensaje</button>
       </div>
     </header>
@@ -36,6 +36,7 @@
       <a href="#Skills">Habilidades</a>
       <a href="#Proyectos">Proyectos</a>
       <a href="#Contacto">Contacto</a>
+      <a href="./PHP/admin.php">Admin</a>
     </nav>
 
     <main>
@@ -120,7 +121,7 @@
 
       <section id="Contacto">
         <h2>Contáctame</h2>
-        <form id="form-contacto" action="#">
+        <form id="form-contacto" action="./PHP/admin.php" method="POST">
           <div class="el">
             <label for="Name">Nombre</label>
             <input type="text" id="Name" name="Name" placeholder="David ..." />

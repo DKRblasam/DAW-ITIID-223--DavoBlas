@@ -17,17 +17,20 @@ const mesagges = [
 let indice = 0;
 
 function changeMesagge() {
-  indice++;
+  const msgElement = document.getElementById("m-msg");
+  if (!msgElement) return;
 
+  indice++;
   if (indice >= mesagges.length) {
     indice = 0;
   }
-
-  document.getElementById("m-msg").textContent = mesagges[indice];
+  msgElement.textContent = mesagges[indice];
 }
 
-// Mostrar el primer mensaje al iniciar
-document.getElementById("m-msg").textContent = mesagges[indice];
+const msgElement = document.getElementById("m-msg");
+if (msgElement) {
+  msgElement.textContent = mesagges[indice];
+}
 
 /*  ---------------------------
         Cambiar Estilos
@@ -35,46 +38,16 @@ document.getElementById("m-msg").textContent = mesagges[indice];
 
 const btnColor = document.getElementById("change1");
 const btnFont = document.getElementById("change2");
-
 const skills = document.querySelectorAll(".list-skills li");
 
-// Arreglo con diferentes estilos
 const estilos = [
-  {
-    backgroundColor: "#76615384",
-    color: "color: #51453d",
-    borderColor: "#766153",
-  },
-  {
-    backgroundColor: "#51453d",
-    color: "#ffffff",
-    borderColor: "#766153",
-  },
-  {
-    backgroundColor: "#2c3e50",
-    color: "#ecf0f1",
-    borderColor: "#3498db",
-  },
-  {
-    backgroundColor: "#8e44ad",
-    color: "#ffffff",
-    borderColor: "#9b59b6",
-  },
-  {
-    backgroundColor: "#16a085",
-    color: "#ffffff",
-    borderColor: "#1abc9c",
-  },
-  {
-    backgroundColor: "#f39c12",
-    color: "#ffffff",
-    borderColor: "#e67e22",
-  },
-  {
-    backgroundColor: "#c0392b",
-    color: "#ffffff",
-    borderColor: "#e74c3c",
-  },
+  { backgroundColor: "#76615384", color: "#51453d", borderColor: "#766153" },
+  { backgroundColor: "#51453d", color: "#ffffff", borderColor: "#766153" },
+  { backgroundColor: "#2c3e50", color: "#ecf0f1", borderColor: "#3498db" },
+  { backgroundColor: "#8e44ad", color: "#ffffff", borderColor: "#9b59b6" },
+  { backgroundColor: "#16a085", color: "#ffffff", borderColor: "#1abc9c" },
+  { backgroundColor: "#f39c12", color: "#ffffff", borderColor: "#e67e22" },
+  { backgroundColor: "#c0392b", color: "#ffffff", borderColor: "#e74c3c" },
 ];
 
 const tipografias = [
@@ -94,137 +67,136 @@ const tipografias = [
   "'UnifrakturCook', cursive",
 ];
 
-btnFont.addEventListener("click", () => {
-  const fuenteAleatoria =
-    tipografias[Math.floor(Math.random() * tipografias.length)];
-
-  skills.forEach((skill) => {
-    skill.style.fontFamily = fuenteAleatoria;
+if (btnFont) {
+  btnFont.addEventListener("click", () => {
+    const fuenteAleatoria =
+      tipografias[Math.floor(Math.random() * tipografias.length)];
+    skills.forEach((skill) => {
+      skill.style.fontFamily = fuenteAleatoria;
+    });
   });
-});
+}
 
-// Cambiar color aleatoriamente
-btnColor.addEventListener("click", () => {
-  const estiloAleatorio = estilos[Math.floor(Math.random() * estilos.length)];
-
-  skills.forEach((skill) => {
-    skill.style.backgroundColor = estiloAleatorio.backgroundColor;
-    skill.style.color = estiloAleatorio.color;
-    skill.style.borderColor = estiloAleatorio.borderColor;
+if (btnColor) {
+  btnColor.addEventListener("click", () => {
+    const estiloAleatorio = estilos[Math.floor(Math.random() * estilos.length)];
+    skills.forEach((skill) => {
+      skill.style.backgroundColor = estiloAleatorio.backgroundColor;
+      skill.style.color = estiloAleatorio.color;
+      skill.style.borderColor = estiloAleatorio.borderColor;
+    });
   });
-});
+}
 
 // ======================================
-// Funcionalidad del formulario
+// Modal y utilidades
 // ======================================
-
-const formulario = document.getElementById("form-contacto");
-
-const nombre = document.getElementById("Name");
-const correo = document.getElementById("Email");
-const mensaje = document.getElementById("Msg");
 
 const modal = document.getElementById("modal-respuesta");
 const respuesta = document.getElementById("respuesta");
 const cerrarModal = document.getElementById("cerrar-modal");
 
-// ======================================
-// Mostrar modal
-// ======================================
-
 function mostrarModal(texto, color) {
+  if (!modal || !respuesta) return;
   respuesta.textContent = texto;
   respuesta.style.color = color;
-
   modal.classList.add("mostrar");
-
-  cerrarModal.focus();
+  if (cerrarModal) cerrarModal.focus();
 }
-
-// ======================================
-// Cerrar modal
-// ======================================
 
 function ocultarModal() {
-  modal.classList.remove("mostrar");
+  if (modal) modal.classList.remove("mostrar");
+}
+
+if (cerrarModal) {
+  cerrarModal.addEventListener("click", ocultarModal);
+}
+
+if (modal) {
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) ocultarModal();
+  });
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") ocultarModal();
+});
+
+// ======================================
+// Validación del formulario de Contacto (index.html)
+// ======================================
+
+const formulario = document.getElementById("form-contacto");
+
+if (formulario) {
+  formulario.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById("Name");
+    const correo = document.getElementById("Email");
+    const mensaje = document.getElementById("Msg");
+
+    if (nombre && nombre.value.trim() === "") {
+      mostrarModal("Por favor, escribe tu nombre.", "#a52a2a");
+      nombre.focus();
+      return;
+    }
+
+    if (correo && correo.value.trim() === "") {
+      mostrarModal("Por favor, escribe tu correo electrónico.", "#a52a2a");
+      correo.focus();
+      return;
+    }
+
+    if (mensaje && mensaje.value.trim() === "") {
+      mostrarModal("Por favor, escribe un mensaje antes de enviarlo.", "#a52a2a");
+      mensaje.focus();
+      return;
+    }
+
+    mostrarModal(
+      "¡Datos enviados correctamente! Gracias por contactarme.",
+      "#386641"
+    );
+    formulario.reset();
+  });
 }
 
 // ======================================
-// Validación del formulario
+// Validación del formulario de Edición (editar.php)
 // ======================================
 
-formulario.addEventListener("submit", (e) => {
-  e.preventDefault();
+const formulario1 = document.getElementById("form-editar");
 
-  // -------------------------
-  // Validar nombre
-  // -------------------------
+if (formulario1) {
+  formulario1.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  if (nombre.value.trim() === "") {
-    mostrarModal("Por favor, escribe tu nombre.", "#a52a2a");
+    const nombre = formulario1.querySelector("#Name");
+    const correo = formulario1.querySelector("#Email");
+    const mensaje = formulario1.querySelector("#Msg");
 
-    nombre.focus();
-    return;
-  }
+    if (nombre && nombre.value.trim() === "") {
+      mostrarModal("Por favor, escribe el nombre a editar.", "#a52a2a");
+      nombre.focus();
+      return;
+    }
 
-  // -------------------------
-  // Validar correo
-  // -------------------------
+    if (correo && correo.value.trim() === "") {
+      mostrarModal("Por favor, escribe el correo electrónico.", "#a52a2a");
+      correo.focus();
+      return;
+    }
 
-  if (correo.value.trim() === "") {
-    mostrarModal("Por favor, escribe tu correo electrónico.", "#a52a2a");
+    if (mensaje && mensaje.value.trim() === "") {
+      mostrarModal("Por favor, escribe el mensaje.", "#a52a2a");
+      mensaje.focus();
+      return;
+    }
 
-    correo.focus();
-    return;
-  }
-
-  // -------------------------
-  // Validar mensaje
-  // -------------------------
-
-  if (mensaje.value.trim() === "") {
-    mostrarModal("Por favor, escribe un mensaje antes de enviarlo.", "#a52a2a");
-
-    mensaje.focus();
-    return;
-  }
-
-  // -------------------------
-  // Formulario correcto
-  // -------------------------
-
-  mostrarModal(
-    "¡Datos enviados correctamente! Gracias por contactarme.",
-    "#386641",
-  );
-
-  formulario.reset();
-});
-
-// ======================================
-// Cerrar con botón
-// ======================================
-
-cerrarModal.addEventListener("click", () => {
-  ocultarModal();
-});
-
-// ======================================
-// Cerrar haciendo clic afuera
-// ======================================
-
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    ocultarModal();
-  }
-});
-
-// ======================================
-// Cerrar con ESC
-// ======================================
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    ocultarModal();
-  }
-});
+    mostrarModal(
+      "¡Mensaje actualizado correctamente!",
+      "#386641"
+    );
+  });
+}

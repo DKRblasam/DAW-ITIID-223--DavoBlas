@@ -1,0 +1,104 @@
+/* NAVEGACION */
+
+svg {
+  fill: #99582a;
+  width: 40px;
+  height: 40px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Estilos integrados para la tabla CRUD basados en image_97ac81.png y global-style.css */
+.msg-rvd h2 {
+  text-align: center;
+  color: #231710;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+.crud-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f5ebe0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.crud-table th,
+.crud-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #e3d5ca;
+}
+.crud-table th {
+  background-color: #3a2b1e;
+  color: #f1e4d3;
+  font-weight: bold;
+}
+.crud-table tr:nth-child(even) {
+  background-color: #f0ebd8;
+}
+.crud-table tr:hover {
+  background-color: #e3d5ca;
+}
+.actions {
+  display: flex;
+  gap: 15px;
+  font-size: 18px;
+}
+.btn-edit {
+  color: #124e78;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-delete {
+  color: #723d46;
+  cursor: pointer;
+  text-decoration: none;
+}
+.empty-message {
+  text-align: center;
+  padding: 40px;
+  font-size: 20px;
+  color: #766153;
+  font-weight: bold;
+  background-color: #f2e9e4;
+  border: 2px dashed #a98360;
+  border-radius: 8px;
+}
+/* Estilos para modo edición en línea */
+.edit-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #9d8189;
+  border-radius: 4px;
+  background-color: #fff8ef;
+  font-family: inherit;
+}
+.btn-save {
+  background-color: #a98360;
+  color: ghostwhite;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-save:hover {
+  background-color: #766153;
+}
+
+/* =========================
+   Formulario de edición de mensajes
+   ========================= */
+
+
+#form-edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
