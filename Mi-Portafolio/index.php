@@ -55,8 +55,7 @@
       <h2>Sobre mí</h2>
       <div class="content-me">
         <div class="avatar" role="img" aria-label="Iniciales DB">
-          <img src="" alt="" hidden />
-          DB
+          <img src="./assets/Profile/catastico1.png" alt="" />
         </div>
         <div>
           <p>
