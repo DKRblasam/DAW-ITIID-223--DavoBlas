@@ -217,6 +217,7 @@
   </footer>
 
   <!-- <script src="./Scripts/index.js"></script> -->
+  <script src="./Scripts/Alert-into.js"></script>
 </body>
 
 </html>

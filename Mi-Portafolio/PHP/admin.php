@@ -1,10 +1,3 @@
-<?php
-
-require_once '../DB/conexion.php';
-
-
-?>
-
 <!doctype html>
 <html lang="es">
 
@@ -50,34 +43,40 @@ require_once '../DB/conexion.php';
                 <table class="crud-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Nombre</th>
                             <th>Correo</th>
                             <th>Mensaje</th>
+                            <th>Fecha</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
-<tr>
-    <td>1</td>
-    <td>Ana</td>
-    <td>ana@example.com</td>
-    <td>Hola, me interesa tu portafolio.</td>
-    <td class="actions">
-        <a href="editar.php?id=1" class="btn-action" title="Editar"><i class="fa-regular fa-pen-to-square"></i></a>
-        <a href="eliminar.php?id=1" class="btn-action" title="Eliminar"><i class="fa-regular fa-trash-can"></i></a>
-    </td>
-</tr>
-                        <tr>
-                            <td>2</td>
-                            <td>José</td>
-                            <td>jose@example.com</td>
-                            <td>Quisiera más información sobre tus proyectos.</td>
-                            <td class="actions">
-                                <a href="editar.php?id=2" class="btn-action" title="Editar"><i class="fa-regular fa-pen-to-square"></i></a>
-                                <a href="eliminar.php?id=2" class="btn-action" title="Eliminar"><i class="fa-regular fa-trash-can"></i></a>
-                            </td>
-                        </tr>
+
+                        <?php
+
+                        require_once './consultas.php';
+                        $rsMsg = checkMsg();
+
+                        while ($arrMsg = mysqli_fetch_array($rsMsg)) {
+
+                            echo '<tr>
+                                        <td>' . $arrMsg['nombre_usuario'] . '</td>
+                                        <td>' . $arrMsg['correo'] . '</td>
+                                        <td>' . $arrMsg['mensaje'] . '</td>
+                                        <td>' . $arrMsg['timeStaps'] . '</td>
+                                        <td class="actions">
+                                            <a href="editar.php?id=1" class="btn-action" title="Editar"><i class="fa-regular fa-pen-to-square"></i></a>
+                                            <a href="eliminar.php?id=1" class="btn-action" title="Eliminar"><i class="fa-regular fa-trash-can"></i></a>
+                                        </td>
+                                    </tr>
+                                    ';
+                        }
+
+
+                        ?>
+
+
+
                     </tbody>
                 </table>
             </div>
