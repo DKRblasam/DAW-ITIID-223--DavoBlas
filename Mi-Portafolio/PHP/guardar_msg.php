@@ -15,13 +15,12 @@ if (isset($_POST['Name']) && isset($_POST['Email']) && isset($_POST['Msg'])) {
   $stmt->bind_param("sss", $Name, $Email, $Msg);
 
   if ($stmt->execute()) {
-
+    mysqli_close($conn);
     echo "Mensaje guardado correctamente.";
     header("Location: ../index.php?estado=success");
-
   } else {
+    mysqli_close($conn);
     echo "Error al guardar el mensaje: " . $stmt->error;
     header("Location: ../index.php?estado=error");
   }
-  mysqli_close($conn);
 }
