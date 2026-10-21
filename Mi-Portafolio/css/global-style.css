@@ -1,8 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Creepster&family=Fascinate&family=Major+Mono+Display&family=Nosifer&family=Rye&family=UnifrakturCook:wght@700&display=swap");
 
-/* Formato de HTML */
-
 * {
   box-sizing: border-box;
 }
@@ -11,8 +9,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Formato cuerpo en general */
-
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -20,8 +16,6 @@ body {
   background-color: #edede9;
   color: black;
 }
-
-/* Estilos Header */
 
 header {
   background-color: #a98360;
@@ -61,8 +55,6 @@ header p {
   max-width: max-content;
 }
 
-/* Etilos Navegacion */
-
 nav {
   border-bottom: 2px solid #d6ccc2;
   background-color: #e3d5ca;
@@ -84,8 +76,6 @@ nav a:hover {
   text-decoration: overline underline;
 }
 
-/* Contenedor Principal */
-
 main {
   background-color: #f5ebe0;
 
@@ -95,8 +85,6 @@ main {
 
   box-shadow: 3px 4px 2px #edede9;
 }
-
-/* Secciones en general */
 
 section {
   padding: 60px 40px;
@@ -113,8 +101,7 @@ section h2 {
   font-size: 30px;
 }
 
-/* ================== Secciones individuales ================== */
-/* Seccion de Inicio */
+/* Inicio */
 
 .section-home {
   min-height: 400px;
@@ -123,8 +110,6 @@ section h2 {
   align-items: center;
   text-align: center;
 }
-
-/* Seccion Inicio - Contenido */
 
 .section-content {
   max-width: 800px;
@@ -140,8 +125,6 @@ section h2 {
   font-size: 20px;
   margin-bottom: 30px;
 }
-
-/* Botones */
 
 .btn-p,
 button {
@@ -165,17 +148,15 @@ button:hover {
   color: ghostwhite;
 }
 
-/* Seccion Sobre Mi */
+/* Sobre mí */
 .content-me {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   gap: 40px;
 
   max-width: 800px;
   margin: 0 auto;
 }
-
 .content-me img {
   width: 200px;
   height: 200px;
@@ -187,26 +168,11 @@ button:hover {
   border: 4px solid #9d8189;
 }
 
-/* .avatar {
-  flex-shrink: 0;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background-color: #8a5a34;
-  color: #fff8ef;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Fraunces", serif;
-  font-size: 44px;
-  font-weight: 700;
-} */
-
 .content-me p {
   font-size: 18px;
 }
 
-/* Seccion de Skills*/
+/* Habilidades */
 
 .section-skills {
   width: 100%;
@@ -255,7 +221,7 @@ button:hover {
   border-radius: 8px;
 }
 
-/* Seccion de Proyectos */
+/* Proyectos */
 
 .container-projects {
   display: flex;
@@ -304,7 +270,7 @@ button:hover {
   color: ghostwhite;
 }
 
-/* Seccion del Formulario */
+/* Formulario */
 .section-about {
 }
 
@@ -426,9 +392,7 @@ form {
 }
 
 
-/* =========================
-   FOOTER
-   ========================= */
+/* Footer */
 
 footer {
   background-color: #5b483dfb;
@@ -480,9 +444,7 @@ footer {
   color: #f1e4d3;
 }
 
-/* =========================
-   MARCA
-   ========================= */
+/* Marca */
 
 .brand-header {
   display: flex;
@@ -531,9 +493,7 @@ footer {
   margin: 0;
 }
 
-/* =========================
-   REDES SOCIALES
-   ========================= */
+/* Redes sociales */
 
 .social-links {
   display: flex;
@@ -571,9 +531,7 @@ footer {
   color: white;
 }
 
-/* =========================
-   PARTE FINAL DEL FOOTER
-   ========================= */
+/* Pie del footer */
 
 .footer-bottom {
   border-top: 1px solid #3a2b1e;
@@ -591,9 +549,7 @@ footer {
   font-size: 14px;
 }
 
-/* =========================
-   DISEÑO RESPONSIVE
-   ========================= */
+/* Diseño responsive */
 
 @media (max-width: 700px) {
   .footer-grid {

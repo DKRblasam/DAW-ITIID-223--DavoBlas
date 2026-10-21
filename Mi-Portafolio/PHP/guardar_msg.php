@@ -18,9 +18,11 @@ if (isset($_POST['Name']) && isset($_POST['Email']) && isset($_POST['Msg'])) {
     mysqli_close($conn);
     echo "Mensaje guardado correctamente.";
     header("Location: ../index.php?estado=success");
+    exit;
   } else {
     mysqli_close($conn);
     echo "Error al guardar el mensaje: " . $stmt->error;
     header("Location: ../index.php?estado=error");
+    exit;
   }
 }

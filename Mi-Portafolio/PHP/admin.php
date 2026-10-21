@@ -5,7 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Fuentes e iconos de FontAwesome para las acciones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="../css/global-style.css" />
     <link rel="stylesheet" href="../css/style-adm.css" />
@@ -27,61 +26,73 @@
         </a>
     </nav>
     <main>
-        <!-- Ajuste del contenedor principal para darle amplitud -->
         <div class="project" style="max-width: 900px; margin: 40px auto; display: block; border: none; background: transparent;">
             <div class="msg-rvd">
                 <h2>Mensajes Recibidos</h2>
 
-                <!-- Estado: Sin mensajes -->
+                <?php
 
-                <!-- <div class="empty-message">
-            <i class="fa-solid fa-inbox" style="font-size: 40px; margin-bottom: 15px; display: block; color: #a98360;"></i>
-            No se ha encontrado contenido. Aún no hay mensajes recibidos.
-          </div> -->
+                require_once './consultas.php';
+                $rsMsg = checkMsg();
 
-                <!-- Estado: Con mensajes (Basado en la imagen) -->
-                <table class="crud-table">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Mensaje</th>
-                            <th>Fecha</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                // Evita que el contenido de usuario se interprete como HTML.
+                function e($valor)
+                {
+                    return htmlspecialchars((string) $valor, ENT_QUOTES, 'UTF-8');
+                }
 
-                        <?php
+                ?>
 
-                        require_once './consultas.php';
-                        $rsMsg = checkMsg();
+                <?php if (mysqli_num_rows($rsMsg) === 0) { ?>
 
-                        while ($arrMsg = mysqli_fetch_array($rsMsg)) {
+                    <div class="empty-message">
+                        <i class="fa-solid fa-inbox" style="font-size: 40px; margin-bottom: 15px; display: block; color: #a98360;"></i>
+                        No se ha encontrado contenido. Aún no hay mensajes recibidos.
+                    </div>
 
-                            echo '<tr>
-                                        <td>' . $arrMsg['nombre_usuario'] . '</td>
-                                        <td>' . $arrMsg['correo'] . '</td>
-                                        <td>' . $arrMsg['mensaje'] . '</td>
-                                        <td>' . $arrMsg['timeStaps'] . '</td>
-                                        <td class="actions">
-                                            <a href="editar.php?id=1" class="btn-action" title="Editar"><i class="fa-regular fa-pen-to-square"></i></a>
-                                            <a href="eliminar.php?id=1" class="btn-action" title="Eliminar"><i class="fa-regular fa-trash-can"></i></a>
-                                        </td>
-                                    </tr>
-                                    ';
-                        }
+                <?php } else { ?>
 
+                    <table class="crud-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Mensaje</th>
+                                <th>Fecha</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                        ?>
+                            <?php while ($arrMsg = mysqli_fetch_array($rsMsg)) { ?>
 
+                                <tr>
+                                    <td><?= e($arrMsg['nombre_usuario']) ?></td>
+                                    <td><?= e($arrMsg['correo']) ?></td>
+                                    <td><?= e($arrMsg['mensaje']) ?></td>
+                                    <td><?= e($arrMsg['timeStaps']) ?></td>
+                                    <td class="actions">
+                                        <a href="editar.php?id=<?= (int) $arrMsg['id'] ?>" class="btn-action" title="Editar"><i class="fa-regular fa-pen-to-square"></i></a>
 
+                                        <form action="eliminar.php" method="POST" class="form-eliminar">
+                                            <input type="hidden" name="id" value="<?= (int) $arrMsg['id'] ?>" />
+                                            <button type="submit" class="btn-action" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
 
-                    </tbody>
-                </table>
+                            <?php } ?>
+
+                        </tbody>
+                    </table>
+
+                <?php } ?>
             </div>
         </div>
     </main>
+
+    <script src="../Scripts/admin.js"></script>
+    <script src="../Scripts/Alert-into.js"></script>
 </body>
 
 </html>

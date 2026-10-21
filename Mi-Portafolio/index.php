@@ -101,7 +101,7 @@
           <a href="#">Ver proyecto</a>
         </article>
         <article class="project">
-          <h3>Catálogo de artesanías queretanas</h3>
+          <h3>Cafeteria</h3>
           <p>
             Sitio de catálogo con filtros por categoría y precio, pensado como
             práctica de HTML, CSS y PHP trabajando juntos.
@@ -111,14 +111,7 @@
       </div>
     </section>
 
-    <!-- 
-      -----------------------
-      Seccion de contacto 
-      -----------------------
-      -->
-
     <section id="Contacto">
-      
       <h2>Contáctame</h2>
       <form id="form-contacto" action="./PHP/guardar_msg.php" method="POST">
         <div class="el">
@@ -150,20 +143,6 @@
 
         <button type="submit">Enviar mensaje</button>
       </form>
-      <!-- Modal de respuesta -->
-      <div
-        id="modal-respuesta"
-        class="modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="titulo-modal">
-        <div class="modal-contenido">
-          <h3 id="titulo-modal">Mensaje</h3>
-          <p id="respuesta"></p>
-
-          <button type="button" id="cerrar-modal">Cerrar</button>
-        </div>
-      </div>
     </section>
   </main>
 
@@ -216,7 +195,7 @@
     </div>
   </footer>
 
-  <!-- <script src="./Scripts/index.js"></script> -->
+  <script src="./Scripts/index.js"></script>
   <script src="./Scripts/Alert-into.js"></script>
 </body>
 

@@ -1,3 +1,52 @@
+<?php
+
+require_once __DIR__ . '/consultas.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+  $id      = isset($_POST['id']) ? (int) $_POST['id'] : 0;
+  $nombre  = isset($_POST['Name']) ? trim($_POST['Name']) : '';
+  $correo  = isset($_POST['Email']) ? trim($_POST['Email']) : '';
+  $mensaje = isset($_POST['Msg']) ? trim($_POST['Msg']) : '';
+
+  if ($id <= 0) {
+    header("Location: ./admin.php?estado=no_encontrado");
+    exit;
+  }
+
+  // Mantiene la validación aunque JavaScript esté desactivado.
+  if ($nombre === '' || $correo === '' || $mensaje === '') {
+    header("Location: ./editar.php?id=" . $id . "&estado=vacio");
+    exit;
+  }
+
+  if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+    header("Location: ./editar.php?id=" . $id . "&estado=correo_invalido");
+    exit;
+  }
+
+  if (updateMsg($id, $nombre, $correo, $mensaje)) {
+    header("Location: ./admin.php?estado=updated");
+  } else {
+    header("Location: ./editar.php?id=" . $id . "&estado=update_error");
+  }
+  exit;
+}
+
+$id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+$registro = $id > 0 ? editMsg($id) : null;
+
+if ($registro === null) {
+  header("Location: ./admin.php?estado=no_encontrado");
+  exit;
+}
+
+function e($valor)
+{
+  return htmlspecialchars((string) $valor, ENT_QUOTES, 'UTF-8');
+}
+
+?>
 <!doctype html>
 <html lang="es">
 
@@ -18,7 +67,7 @@
 <body>
   <header>
     <h1>Zona de administración</h1>
-    <p class="msg">Editar mensaje</p>
+    <p class="msg">Formulario para editar</p>
   </header>
 
   <nav>
@@ -35,9 +84,9 @@
     </a>
     <a href="../index.php" aria-label="Volver al inicio">
       <svg
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 -960 960 960" 
-        width="30" 
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 -960 960 960"
+        width="30"
         fill="currentColor">
         <path d="M480-427ZM240-120q-50 0-85-35t-35-85v-240q0-24 9-46t26-39l240-240q17-18 39.5-26.5T480-840q23 0 45 8.5t40 26.5l240 240q17 17 26 39t9 46v240q0 50-35 85t-85 35H240Zm0-80h480q17 0 28.5-11.5T760-240v-240q0-8-3-15t-9-13L595-662l-59 58 144 144v180H280v-180l258-258-30-30q-8-8-15.5-10t-12.5-2q-5 0-12.5 2T452-748L212-508q-6 6-9 13t-3 15v240q0 17 11.5 28.5T240-200Zm120-160h240v-67L480-547 360-427v67Z" />
       </svg>
@@ -47,10 +96,11 @@
   <main>
     <section id="Editar-msg" class="project">
       <h2>Editar mensaje</h2>
-      <form id="form-editar" action="" method="POST">
+      <form id="form-editar" action="./editar.php?id=<?= (int) $registro['id'] ?>" method="POST" novalidate>
+        <input type="hidden" name="id" value="<?= (int) $registro['id'] ?>" />
         <div class="el">
           <label for="Name">Nombre</label>
-          <input type="text" id="Name" name="Name" placeholder="David ..." />
+          <input type="text" id="Name" name="Name" placeholder="David ..." value="<?= e($registro['nombre_usuario']) ?>" />
         </div>
         <div class="el">
           <label for="Email">Correo</label>
@@ -58,7 +108,8 @@
             type="email"
             id="Email"
             name="Email"
-            placeholder="juanito@correo.com" />
+            placeholder="juanito@correo.com"
+            value="<?= e($registro['correo']) ?>" />
         </div>
 
         <div class="el">
@@ -67,81 +118,18 @@
             id="Msg"
             name="Msg"
             rows="5"
-            placeholder="Escribe tu mensaje aquí..."></textarea>
+            placeholder="Escribe tu mensaje aquí..."><?= e($registro['mensaje']) ?></textarea>
         </div>
-
         <button type="submit">Actualizar mensaje</button>
       </form>
-
-      <!-- Modal de respuesta -->
-      <div
-        id="modal-respuesta"
-        class="modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="titulo-modal">
-        <div class="modal-contenido">
-          <h3 id="titulo-modal">Mensaje</h3>
-          <p id="respuesta"></p>
-
-          <button type="button" id="cerrar-modal">Cerrar</button>
-        </div>
-      </div>
     </section>
   </main>
+  <div class="footer-bottom">
+    <p>© 2026 David Blas. Todos los derechos reservados.</p>
+  </div>
 
-  <footer>
-    <div class="footer-container">
-      <div class="footer-grid">
-        <div class="footer-column">
-          <div class="brand-header">
-            <div class="brand-box">DB</div>
-            <div class="brand-title">
-              <h3>David Blas</h3>
-              <p>Universidad Politécnica</p>
-            </div>
-          </div>
-          <p class="brand-description">
-            Portafolio hecho como práctica de HTML y CSS para la materia de
-            Desarrollo Web.
-          </p>
-        </div>
-        <div class="footer-column">
-          <h4>Enlaces</h4>
-          <ul>
-            <li><a href="../index.html#Home">Inicio</a></li>
-            <li><a href="../index.html#Me">Sobre mí</a></li>
-            <li><a href="../index.html#Skills">Habilidades</a></li>
-            <li><a href="../index.html#Proyectos">Proyectos</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h4>Contacto</h4>
-          <ul>
-            <li>
-              <a href="mailto:125054204@upq.edu.mx">125054204@upq.edu.mx</a>
-            </li>
-            <li>Querétaro, México</li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h4>Sígueme</h4>
-          <div class="social-links">
-            <a href="#" class="social-link facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-link instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-link twitter" aria-label="Twitter">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 David Blas. Todos los derechos reservados.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="../Scripts/index.js"></script>
+  <script src="../Scripts/admin.js"></script>
+  <script src="../Scripts/Alert-into.js"></script>
 </body>
 
 </html>

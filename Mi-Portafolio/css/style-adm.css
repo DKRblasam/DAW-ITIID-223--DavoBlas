@@ -1,4 +1,4 @@
-/* NAVEGACION */
+/* Navegación */
 
 svg {
   fill: #99582a;
@@ -12,7 +12,7 @@ main {
   padding: 20px;
 }
 
-/* Estilos integrados para la tabla CRUD basados en image_97ac81.png y global-style.css */
+/* Tabla de mensajes */
 .msg-rvd h2 {
   text-align: center;
   color: #231710;
@@ -70,7 +70,6 @@ main {
   border: 2px dashed #a98360;
   border-radius: 8px;
 }
-/* Estilos para modo edición en línea */
 .edit-input {
   width: 100%;
   padding: 8px;
@@ -91,15 +90,46 @@ main {
   background-color: #766153;
 }
 
-/* =========================
-   Formulario de edición de mensajes
-   ========================= */
-
-
 #form-edit {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
+}
+
+/* Acciones de la tabla */
+
+.actions {
+  align-items: center;
+}
+
+.actions form {
+  margin: 0;
+  max-width: none;
+}
+
+.actions a.btn-action,
+.actions button.btn-action {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.actions a.btn-action {
+  color: #124e78;
+}
+
+.actions button.btn-action {
+  color: #723d46;
+}
+
+.actions a.btn-action:hover,
+.actions button.btn-action:hover {
+  background: transparent;
+  opacity: 0.65;
 }
