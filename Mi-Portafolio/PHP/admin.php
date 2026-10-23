@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="../css/style-adm.css" />
 
     <title>Admin --- Portafolio</title>
-
 </head>
 
 <body>
@@ -32,56 +31,64 @@
             <div class="msg-rvd">
                 <h2>Mensajes Recibidos</h2>
 
-                <!-- Estado: Sin mensajes -->
+                <?php
+                require_once __DIR__ . '/consultas.php';
+                $mensajes = checkMsg();
+                ?>
 
-                <!-- <div class="empty-message">
-            <i class="fa-solid fa-inbox" style="font-size: 40px; margin-bottom: 15px; display: block; color: #a98360;"></i>
-            No se ha encontrado contenido. Aún no hay mensajes recibidos.
-          </div> -->
+                <?php if (count($mensajes) === 0): ?>
+                    <!-- Estado: Sin mensajes -->
+                    <div class="empty-message">
+                        <i class="fa-solid fa-inbox" style="font-size: 40px; margin-bottom: 15px; display: block; color: #a98360;"></i>
+                        No se ha encontrado contenido. Aún no hay mensajes recibidos.
+                    </div>
+                <?php else: ?>
+                    <!-- Estado: Con mensajes -->
+                    <table class="crud-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Mensaje</th>
+                                <th>Fecha</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($mensajes as $m): ?>
+                                <tr>
+                                    <td><?= e($m['nombre_usuario']) ?></td>
+                                    <td><?= e($m['correo']) ?></td>
+                                    <td><?= e($m['mensaje']) ?></td>
+                                    <td><?= e($m['timeStaps']) ?></td>
+                                    <td>
+                                        <div class="actions">
+                                            <!-- Editar: lleva al formulario con los datos cargados -->
+                                            <a href="editar.php?id=<?= (int)$m['id'] ?>" class="btn-action" title="Editar" aria-label="Editar mensaje">
+                                                <i class="fa-regular fa-pen-to-square"></i>
+                                            </a>
 
-                <!-- Estado: Con mensajes (Basado en la imagen) -->
-                <table class="crud-table">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Mensaje</th>
-                            <th>Fecha</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <?php
-
-                        require_once './consultas.php';
-                        $rsMsg = checkMsg();
-
-                        while ($arrMsg = mysqli_fetch_array($rsMsg)) {
-
-                            echo '<tr>
-                                        <td>' . $arrMsg['nombre_usuario'] . '</td>
-                                        <td>' . $arrMsg['correo'] . '</td>
-                                        <td>' . $arrMsg['mensaje'] . '</td>
-                                        <td>' . $arrMsg['timeStaps'] . '</td>
-                                        <td class="actions">
-                                            <a href="editar.php?id=1" class="btn-action" title="Editar"><i class="fa-regular fa-pen-to-square"></i></a>
-                                            <a href="eliminar.php?id=1" class="btn-action" title="Eliminar"><i class="fa-regular fa-trash-can"></i></a>
-                                        </td>
-                                    </tr>
-                                    ';
-                        }
-
-
-                        ?>
-
-
-
-                    </tbody>
-                </table>
+                                            <!-- Eliminar: POST; admin.js pide confirmacion antes de enviarlo -->
+                                            <form class="form-eliminar" action="eliminar.php" method="POST">
+                                                <input type="hidden" name="id" value="<?= (int)$m['id'] ?>">
+                                                <button type="submit" class="btn-action" title="Eliminar" aria-label="Eliminar mensaje">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
             </div>
         </div>
     </main>
+
+    <script src="../Scripts/ui.js"></script>
+    <script src="../Scripts/Alert-into.js"></script>
+    <script src="../Scripts/admin.js"></script>
 </body>
 
 </html>

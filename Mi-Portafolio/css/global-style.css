@@ -413,6 +413,25 @@ form {
   color: ghostwhite;
 }
 
+
+/* Botones del modal (aviso y confirmacion) */
+.modal-botones {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.modal-contenido button.btn-secundario {
+  background-color: transparent;
+  color: #51453d;
+}
+
+.modal-contenido button.btn-secundario:hover {
+  background-color: #e3d5ca;
+  color: #231710;
+}
+
 @keyframes aparecer {
   from {
     opacity: 0;

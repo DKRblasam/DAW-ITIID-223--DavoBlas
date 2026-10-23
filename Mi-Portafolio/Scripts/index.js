@@ -89,114 +89,41 @@ if (btnColor) {
 }
 
 // ======================================
-// Modal y utilidades
-// ======================================
-
-const modal = document.getElementById("modal-respuesta");
-const respuesta = document.getElementById("respuesta");
-const cerrarModal = document.getElementById("cerrar-modal");
-
-function mostrarModal(texto, color) {
-  if (!modal || !respuesta) return;
-  respuesta.textContent = texto;
-  respuesta.style.color = color;
-  modal.classList.add("mostrar");
-  if (cerrarModal) cerrarModal.focus();
-}
-
-function ocultarModal() {
-  if (modal) modal.classList.remove("mostrar");
-}
-
-if (cerrarModal) {
-  cerrarModal.addEventListener("click", ocultarModal);
-}
-
-if (modal) {
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) ocultarModal();
-  });
-}
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") ocultarModal();
-});
-
-// ======================================
-// Validación del formulario de Contacto (index.html)
+// Validación del formulario de Contacto (index.php)
+// Los avisos usan los modales de ui.js. Si los datos son válidos el
+// formulario SE ENVÍA a guardar_msg.php; PHP guarda y redirige con
+// ?estado=success, y Alert-into.js muestra la confirmación.
 // ======================================
 
 const formulario = document.getElementById("form-contacto");
 
 if (formulario) {
   formulario.addEventListener("submit", (e) => {
-    e.preventDefault();
-
     const nombre = document.getElementById("Name");
     const correo = document.getElementById("Email");
     const mensaje = document.getElementById("Msg");
 
-    if (nombre && nombre.value.trim() === "") {
-      mostrarModal("Por favor, escribe tu nombre.", "#a52a2a");
-      nombre.focus();
-      return;
+    const rechazar = (texto, campo) => {
+      e.preventDefault();
+      mostrarModal(texto, "error").then(() => campo.focus());
+    };
+
+    if (nombre.value.trim() === "") {
+      return rechazar("Por favor, escribe tu nombre.", nombre);
     }
 
-    if (correo && correo.value.trim() === "") {
-      mostrarModal("Por favor, escribe tu correo electrónico.", "#a52a2a");
-      correo.focus();
-      return;
+    if (correo.value.trim() === "") {
+      return rechazar("Por favor, escribe tu correo electrónico.", correo);
     }
 
-    if (mensaje && mensaje.value.trim() === "") {
-      mostrarModal("Por favor, escribe un mensaje antes de enviarlo.", "#a52a2a");
-      mensaje.focus();
-      return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value.trim())) {
+      return rechazar("El correo electrónico no es válido.", correo);
     }
 
-    mostrarModal(
-      "¡Datos enviados correctamente! Gracias por contactarme.",
-      "#386641"
-    );
-    formulario.reset();
-  });
-}
-
-// ======================================
-// Validación del formulario de Edición (editar.php)
-// ======================================
-
-const formulario1 = document.getElementById("form-editar");
-
-if (formulario1) {
-  formulario1.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const nombre = formulario1.querySelector("#Name");
-    const correo = formulario1.querySelector("#Email");
-    const mensaje = formulario1.querySelector("#Msg");
-
-    if (nombre && nombre.value.trim() === "") {
-      mostrarModal("Por favor, escribe el nombre a editar.", "#a52a2a");
-      nombre.focus();
-      return;
+    if (mensaje.value.trim() === "") {
+      return rechazar("Por favor, escribe un mensaje antes de enviarlo.", mensaje);
     }
 
-    if (correo && correo.value.trim() === "") {
-      mostrarModal("Por favor, escribe el correo electrónico.", "#a52a2a");
-      correo.focus();
-      return;
-    }
-
-    if (mensaje && mensaje.value.trim() === "") {
-      mostrarModal("Por favor, escribe el mensaje.", "#a52a2a");
-      mensaje.focus();
-      return;
-    }
-
-    mostrarModal(
-      "¡Mensaje actualizado correctamente!",
-      "#386641"
-    );
+    // Válido: no se hace preventDefault, el formulario viaja a PHP.
   });
 }

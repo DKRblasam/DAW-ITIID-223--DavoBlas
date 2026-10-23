@@ -47,6 +47,7 @@ main {
 }
 .actions {
   display: flex;
+  align-items: center;
   gap: 15px;
   font-size: 18px;
 }
@@ -89,6 +90,35 @@ main {
 }
 .btn-save:hover {
   background-color: #766153;
+}
+
+/* Iconos de la columna Opciones: el enlace (editar) y el boton (eliminar)
+   se ven igual. El selector .crud-table .btn-action gana a ".project a" y a "button"
+   de global-style.css, que los pintaban como botones grandes. */
+.crud-table .btn-action {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #231710;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.crud-table .btn-action:hover {
+  background: transparent;
+  color: #723d46;
+  transform: scale(1.15);
+}
+
+.form-eliminar {
+  display: inline;
+  max-width: none;
+  margin: 0;
 }
 
 /* =========================

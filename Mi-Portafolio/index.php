@@ -118,7 +118,7 @@
       -->
 
     <section id="Contacto">
-      
+
       <h2>Contáctame</h2>
       <form id="form-contacto" action="./PHP/guardar_msg.php" method="POST">
         <div class="el">
@@ -216,7 +216,8 @@
     </div>
   </footer>
 
-  <!-- <script src="./Scripts/index.js"></script> -->
+  <script src="./Scripts/ui.js"></script>
+  <script src="./Scripts/index.js"></script>
   <script src="./Scripts/Alert-into.js"></script>
 </body>
 

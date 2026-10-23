@@ -1,5 +1,55 @@
+<?php
+/*  Formulario de edicion + procesamiento de la actualizacion.
+    - GET  editar.php?id=N : carga el registro y muestra el formulario con sus datos.
+    - POST editar.php      : valida, actualiza en la BD y redirige al home de
+                             administracion, donde Alert-into.js muestra la confirmacion. */
+
+require_once __DIR__ . '/consultas.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $id      = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+  $nombre  = trim($_POST['Name']  ?? '');
+  $correo  = trim($_POST['Email'] ?? '');
+  $mensaje = trim($_POST['Msg']   ?? '');
+
+  if (!$id) {
+    header("Location: admin.php?estado=no_encontrado");
+    exit;
+  }
+
+  // Nunca se envian vacios a la BD, aunque se salten la validacion de JS.
+  $error = validarMsg($nombre, $correo, $mensaje);
+  if ($error !== '') {
+    header("Location: editar.php?id=$id&estado=$error");
+    exit;
+  }
+
+  try {
+    $estado = updateMsg($id, $nombre, $correo, $mensaje) ? 'actualizado' : 'error_actualizar';
+  } catch (Throwable $ex) {
+    $estado = 'error_actualizar';
+  }
+
+  header("Location: admin.php?estado=$estado");
+  exit;
+}
+
+// ---- GET: cargar el registro seleccionado ----
+// ---- Es el uso similar a URLSeachParams pero en php ----
+$id  = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+$msg = $id ? getMsg($id) : null;
+
+if ($msg === null) {
+  header("Location: admin.php?estado=no_encontrado");
+  exit;
+}
+?>
 <!doctype html>
 <html lang="es">
+
+<script>
+  window.history.replaceState({}, document.title, window.location.pathname);
+</script>
 
 <head>
   <meta charset="UTF-8" />
@@ -35,9 +85,9 @@
     </a>
     <a href="../index.php" aria-label="Volver al inicio">
       <svg
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 -960 960 960" 
-        width="30" 
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 -960 960 960"
+        width="30"
         fill="currentColor">
         <path d="M480-427ZM240-120q-50 0-85-35t-35-85v-240q0-24 9-46t26-39l240-240q17-18 39.5-26.5T480-840q23 0 45 8.5t40 26.5l240 240q17 17 26 39t9 46v240q0 50-35 85t-85 35H240Zm0-80h480q17 0 28.5-11.5T760-240v-240q0-8-3-15t-9-13L595-662l-59 58 144 144v180H280v-180l258-258-30-30q-8-8-15.5-10t-12.5-2q-5 0-12.5 2T452-748L212-508q-6 6-9 13t-3 15v240q0 17 11.5 28.5T240-200Zm120-160h240v-67L480-547 360-427v67Z" />
       </svg>
@@ -47,31 +97,34 @@
   <main>
     <section id="Editar-msg" class="project">
       <h2>Editar mensaje</h2>
-      <form id="form-editar" action="" method="POST">
-        <div class="el">
-          <label for="Name">Nombre</label>
-          <input type="text" id="Name" name="Name" placeholder="David ..." />
-        </div>
-        <div class="el">
-          <label for="Email">Correo</label>
-          <input
-            type="email"
-            id="Email"
-            name="Email"
-            placeholder="juanito@correo.com" />
-        </div>
+  <form id="form-editar" action="editar.php" method="POST">
+    <input type="hidden" name="id" value="<?= (int)$msg['id'] ?>" />
+    <div class="el">
+      <label for="Name">Nombre</label>
+      <input type="text" id="Name" name="Name" placeholder="David ..." maxlength="100" value="<?= e($msg['nombre_usuario']) ?>" />
+    </div>
+    <div class="el">
+      <label for="Email">Correo</label>
+      <input
+        type="email"
+        id="Email"
+        name="Email"
+        placeholder="juanito@correo.com"
+        maxlength="150"
+        value="<?= e($msg['correo']) ?>" />
+    </div>
 
-        <div class="el">
-          <label for="Msg">Mensaje</label>
-          <textarea
-            id="Msg"
-            name="Msg"
-            rows="5"
-            placeholder="Escribe tu mensaje aquí..."></textarea>
-        </div>
+    <div class="el">
+      <label for="Msg">Mensaje</label>
+      <textarea
+        id="Msg"
+        name="Msg"
+        rows="5"
+        placeholder="Escribe tu mensaje aquí..."><?= e($msg['mensaje']) ?></textarea>
+    </div>
 
-        <button type="submit">Actualizar mensaje</button>
-      </form>
+    <button type="submit">Actualizar</button>
+  </form>
 
       <!-- Modal de respuesta -->
       <div
@@ -109,10 +162,10 @@
         <div class="footer-column">
           <h4>Enlaces</h4>
           <ul>
-            <li><a href="../index.html#Home">Inicio</a></li>
-            <li><a href="../index.html#Me">Sobre mí</a></li>
-            <li><a href="../index.html#Skills">Habilidades</a></li>
-            <li><a href="../index.html#Proyectos">Proyectos</a></li>
+            <li><a href="../index.php#Home">Inicio</a></li>
+            <li><a href="../index.php#Me">Sobre mí</a></li>
+            <li><a href="../index.php#Skills">Habilidades</a></li>
+            <li><a href="../index.php#Proyectos">Proyectos</a></li>
           </ul>
         </div>
         <div class="footer-column">
@@ -141,7 +194,9 @@
     </div>
   </footer>
 
-  <script src="../Scripts/index.js"></script>
+  <script src="../Scripts/ui.js"></script>
+  <script src="../Scripts/Alert-into.js"></script>
+  <script src="../Scripts/admin.js"></script>
 </body>
 
 </html>
