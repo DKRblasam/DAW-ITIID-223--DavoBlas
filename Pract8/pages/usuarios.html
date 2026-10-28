@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios - Soporte Técnico Universitario</title>
+    <link rel="stylesheet" href="../estilos/styles.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-brand">
+            <img src="../assets/images/logo.png" alt="Logo UPQ" class="logo">
+            <span class="brand-title">Soporte Técnico Universitario</span>
+        </div>
+        <nav class="navbar-menu">
+            <a href="./inicio_admin.html" class="nav-link">Inicio</a>
+            <a href="./usuarios_equipos.html" class="nav-link active">Usuarios y equipos</a>
+            <a href="./seguimiento.html" class="nav-link">Seguimiento</a>
+            <a href="../index.html" class="nav-link">Salir</a>
+        </nav>
+    </header>
+
+    <main class="main-container-app">
+        <header class="section-header">
+            <h2>Usuarios</h2>
+            <p>Registra un usuario nuevo y consulta la lista.</p>
+        </header>
+
+        <div class="users-grid">
+
+            <div class="card user-form-card">
+                <form id="form-usuario" method="POST" novalidate>
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej. Ana Pérez">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo" class="form-control" placeholder="ana@upq.edu.mx">
+                    </div>
+
+                    <button type="submit" class="btn btn-general">Agregar usuario</button>
+
+                    <div id="aviso" role="status" hidden></div>
+                </form>
+            </div>
+
+            <div class="card card-table">
+                <div class="table-responsive">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                            </tr>
+                        </thead>
+                           <tbody id="tabla-usuarios"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="../Scripts/avisos.js"></script>
+    <script src="../Scripts/usuarios.js"></script>
+
+</body>
+</html>

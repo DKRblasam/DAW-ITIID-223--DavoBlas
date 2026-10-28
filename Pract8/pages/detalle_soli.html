@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte Técnico Universitario - Descripción de Solicitud</title>
+    <link rel="stylesheet" href="../estilos/styles.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-brand">
+            <img src="../assets/images/logo.png" alt="Logo UPQ" class="logo">
+            <span class="brand-title">Soporte Técnico Universitario</span>
+        </div>
+        <nav class="navbar-menu">
+            <a href="#" class="nav-link">Inicio</a>
+            <a href="#" class="nav-link">Nueva solicitud</a>
+            <a href="#" class="nav-link active">Historial</a>
+            <a href="#" class="nav-link">Salir</a>
+        </nav>
+    </header>
+
+    <main class="main-container-app">
+
+        <div class="section-header">
+            <h2 id="titulo-solicitud">Solicitud</h2>
+            <p>Detalle y estado de atención.</p>
+        </div>
+
+        <div class="card detail-card">
+            
+            <div class="detail-info-row">
+                <div class="detail-group">
+                    <span class="detail-label">Equipo</span>
+                    <span class="detail-value" id="detalle-equipo"></span>
+                </div>
+                <div class="detail-group">
+                    <span class="detail-label">Fecha</span>
+                    <span class="detail-value" id="detalle-fecha"></span>
+                </div>
+                <div class="detail-group">
+                    <span class="detail-label">Estado</span>
+                    <div id="detalle-estado"></div>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <span class="detail-label">Descripción del problema</span>
+                <p class="detail-text" id="detalle-descripcion"></p>
+            </div>
+
+            <div class="detail-section">
+                <span class="detail-label">Observación del técnico</span>
+                <div class="observation-box" id="detalle-observacion"></div>
+            </div>
+
+            <div id="aviso" role="status" hidden></div>
+
+            <div class="detail-actions">
+                <a href="historial.html" class="btn btn-admin">Volver al historial</a>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="../Scripts/avisos.js"></script>
+    <script src="../Scripts/estados.js"></script>
+    <script src="../Scripts/detalle_soli.js"></script>
+
+</body>
+</html>
