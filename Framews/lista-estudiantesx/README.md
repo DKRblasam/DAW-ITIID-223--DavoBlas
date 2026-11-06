@@ -1,75 +1,39 @@
-# React + TypeScript + Vite
+# Lista de estudiantes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación SPA hecha con React 19, TypeScript y Vite que muestra una lista de estudiantes con su carrera.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js `^20.19.0` o `>=22.12.0` (requisito de Vite 8)
+- [pnpm](https://pnpm.io/)
 
-## React Compiler
+## Scripts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Comando        | Descripción                                   |
+| -------------- | --------------------------------------------- |
+| `pnpm dev`     | Servidor de desarrollo                        |
+| `pnpm build`   | Verificación de tipos (`tsc -b`) y build      |
+| `pnpm lint`    | ESLint                                        |
+| `pnpm preview` | Sirve el build de producción                  |
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Estructura
 
 ```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+src/
+├── components/   Componentes reutilizables (StudentForm, StudentItem)
+├── constants/    Datos y constantes (STUDENTS)
+├── styles/       Estilos globales
+├── types/        Tipos de TypeScript
+├── App.tsx       Composición de la página
+└── main.tsx      Punto de entrada
 ```
+
+## Importaciones absolutas
+
+Todos los imports internos usan el alias `@/` (equivale a `src/`), declarado **una sola vez** en `tsconfig.app.json` (`paths`). Vite lo resuelve con `resolve.tsconfigPaths`, y ESLint rechaza las rutas relativas (`./`, `../`) mediante `no-restricted-imports`.
+
+```ts
+import StudentItem from "@/components/StudentItem";
+```
+
+> Nota: `typescript` está fijado a `~6.0.3` porque `typescript-eslint` aún no soporta TypeScript 7.x.

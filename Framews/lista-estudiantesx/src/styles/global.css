@@ -12,8 +12,21 @@ h1 {
 
 form {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   margin-bottom: 24px;
+}
+
+/* Evita el desbordamiento horizontal del formulario en pantallas pequeñas */
+@media (max-width: 600px) {
+  form {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  form input {
+    flex: none;
+    margin-bottom: 12px;
+  }
 }
 
 input {
