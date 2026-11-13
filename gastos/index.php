@@ -25,15 +25,17 @@ endforeach;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gastos - Personales</title>
+  <link rel="stylesheet" href="./CSS/Styles.css" />
 </head>
 
 <style>
   div {
     margin: 10px;
   }
+
   form {
     display: flex;
-    gap: 20px;
+    gap: 5px;
   }
 
   th,
@@ -46,14 +48,16 @@ endforeach;
 <body>
   <main>
     <h1 class="title">Control de Gastos Personales</h1>
-    <div class="g-total">
-      <p class="indicador">
-        Total de gastos: $ <?= $total_gastos ?>
+    <div class="gastos">
+      <div class="g-total">
+        <p class="indicador">
+          Total de gastos: $ <?= $total_gastos ?>
 
-      </p>
-    </div>
-    <div class="g-pendt">
-      <p class="indicador">Gastos pendientes: $<?= $total_pendientes ?></p>
+        </p>
+      </div>
+      <div class="g-pendt">
+        <p class="indicador">Gastos pendientes: $<?= $total_pendientes ?></p>
+      </div>
     </div>
     <div class="reg-gasto">
       <h2 class="title">Registrar nuevo gasto</h2>
@@ -74,39 +78,53 @@ endforeach;
       </form>
     </div>
     <div class="table-gen">
-      <table class="crud-table">
-        <thead>
-          <tr>
-            <th>Concepto</th>
-            <th>Categoría</th>
-            <th>Monto</th>
-            <th>Fecha</th>
-            <th>Estado</th>
-            <th>Accion</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($mensajes as $m): ?>
+      <?php if (count($mensajes) === 0): ?>
+        <!-- Estado: Sin mensajes -->
+        <div class="empty-message">
+          <i class="fa-solid fa-inbox" style="font-size: 40px; margin-bottom: 15px; display: block; color: #4e7fd4;"></i>
+          No se ha encontrado contenido. Aún no hay mensajes recibidos.
+        </div>
+      <?php else: ?>
+        <p class="cantidad">
+          <?php echo "Total de registros: " . count($mensajes); ?>
+        </p>
+        <!-- Estado: Con mensajes -->
+        <table class="crud-table">
+          <thead>
             <tr>
-              <td><?= e($m['concepto']) ?></td>
-              <td><?= e($m['categoria']) ?></td>
-              <td><?= e($m['monto']) ?></td>
-              <td><?= e($m['fecha']) ?></td>
-              <td><?= (int)$m['pagado'] === 0 ? "Pendiente" : "Pagado" ?></td>
-              <td>
-                <div class="actions">
-                  <!-- Eliminar: POST; admin.js pide confirmacion antes de enviarlo -->
-                  <form class="form-eliminar" action="./PHP/editar.php" method="POST">
-                    <input type="hidden" name="id" value="<?= (int)$m['id'] ?>">
 
-                    <?= (int)$m['pagado'] === 0 ? '<button type="submit" class="btn-action" title="Eliminar" aria-label="Eliminar mensaje">Marcar como Pagado</Button>' : "" ?>
-                  </form>
-                </div>
-              </td>
+              <th>Concepto</th>
+              <th>Categoría</th>
+              <th>Monto</th>
+              <th>Fecha</th>
+              <th>Estado</th>
+              <th>Accion</th>
             </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <?php foreach ($mensajes as $m): ?>
+              <tr>
+
+                <td><?= e($m['concepto']) ?></td>
+                <td><?= e($m['categoria']) ?></td>
+                <td><?= e($m['monto']) ?></td>
+                <td><?= e($m['fecha']) ?></td>
+                <td><?= (int)$m['pagado'] === 0 ? "Pendiente" : "Pagado" ?></td>
+                <td>
+                  <div class="actions">
+                    <!-- Eliminar: POST; admin.js pide confirmacion antes de enviarlo -->
+                    <form class="form-eliminar" action="./PHP/editar.php" method="POST">
+                      <input type="hidden" name="id" value="<?= (int)$m['id'] ?>">
+
+                      <?= (int)$m['pagado'] === 0 ? '<button type="submit" class="btn-edit" title="Eliminar" aria-label="Eliminar mensaje">Marcar como Pagado</Button>' : "" ?>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      <?php endif; ?>
     </div>
   </main>
 </body>
