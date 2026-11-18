@@ -4,12 +4,13 @@ $mensajes = checkGastos();
 
 $total_gastos = 0.0;
 $total_pendientes = 0.0;
+$contador = 0;
 
 foreach ($mensajes as $m):
   if ((int)$m['pagado'] === 0) {
     $total_pendientes += (float) $m['monto'];
+    $contador ++;
   } else {
-
     $total_gastos += $m['monto'];
   }
 endforeach;
@@ -86,7 +87,7 @@ endforeach;
         </div>
       <?php else: ?>
         <p class="cantidad">
-          <?php echo "Total de registros: " . count($mensajes); ?>
+          <?php echo "Total de gastos pendientes: $contador" ?>
         </p>
         <!-- Estado: Con mensajes -->
         <table class="crud-table">

@@ -117,7 +117,7 @@ main {
 .btn-p,
 button {
   display: inline-block;
-  padding: 15px 25px;
+  padding: 15px;
 
   border: 2px double hsl(215, 100%, 40%);
   border-radius: 5px;
